@@ -1,3 +1,5 @@
+import CartWidget from "../CartWidget/CartWidget"
+
   const NavBar = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-info">
@@ -20,6 +22,7 @@
                     <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Servicios</a>
                 </li>
                 </ul>
+                <CartWidget/>
             </div>
      </nav>
     )
