@@ -1,14 +1,12 @@
-import ItemCount from "../ItemCount/ItemCount"
 
 const Item = ({prod})=>{
     return(
         <>
-            <div className="card" style={{ width: '18rem' }} key={prod.id}>
+            <div className="card m-5 h-100" style={{ width: '18rem' }} key={prod.id}>
+                <h5 className="card-title py-2">{prod.title}</h5>
                 <img src={prod.pictureUrl} className="card-img-top" alt="producto de mascota"></img>
                 <div className="card-body">
-                    <h5 className="card-title">{prod.title}</h5>
-                    <p className="card-text">{prod.price}</p>
-                    <ItemCount stock={5} initial={1} onAdd/>
+                    <a href="#" className="btn btn-primary">Ver detalle</a>
                 </div>
             </div>
         </>
@@ -16,4 +14,4 @@ const Item = ({prod})=>{
 }
 
 
-export default Item
+export default Item 
