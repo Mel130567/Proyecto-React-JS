@@ -1,28 +1,32 @@
 import CartWidget from "../CartWidget/CartWidget"
+import { Link } from "react-router-dom"
 
   const NavBar = () => {
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-info" style={{minHeight: '10vh' }}>
-            <a className="navbar-brand" href="#">Patitas pet-shop</a>
+                <Link to="/" >
+                <a className="navbar-brand" href="#">Patitas pet-shop</a>
+                </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
             <div className="collapse navbar-collapse" id="navbarNav">
                 <ul className="navbar-nav">
-                <li className="nav-item active">
-                    <a className="nav-link" href="#">Inicio</a>
+                <li className="nav-item">
+                    <Link to = {"/category/1"} className="nav-link">
+                        Perros
+                    </Link>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link" href="#">Perros</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#">Gatos</a>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href="#" tabindex="-1" aria-disabled="true">Servicios</a>
+                    <Link to = {"/category/2"} className="nav-link">
+                        Gatos
+                    </Link>
                 </li>
                 </ul>
+                <Link to="/cart">
                 <CartWidget/>
+                </Link>
             </div>
      </nav>
     )

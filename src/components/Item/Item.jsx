@@ -1,3 +1,4 @@
+import {Link} from 'react-router-dom';
 
 const Item = ({prod})=>{
     return(
@@ -6,7 +7,11 @@ const Item = ({prod})=>{
                 <h5 className="card-title py-2">{prod.title}</h5>
                 <img src={prod.pictureUrl} className="card-img-top" alt="producto de mascota"></img>
                 <div className="card-body">
-                    <a href="#" className="btn btn-primary">Ver detalle</a>
+                    <Link to = {`/detail/${prod.id}`}>
+                        <button className="btn btn-primary">
+                            Ver detalle
+                        </button>
+                    </Link>
                 </div>
             </div>
         </>
