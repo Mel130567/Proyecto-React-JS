@@ -5,22 +5,24 @@ import { BrowserRouter, Switch, Route} from 'react-router-dom';
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import Cart from './components/Cart/Cart';
+import CartProvider from './Context/CartContext';
 
 function App() {
+
   return (
-    
-    <div className="App">
+    <CartProvider>
       <BrowserRouter>
-      <NavBar />
-      <Switch>
-      <Route exact path="/"> <ItemListContainer/> </Route>
-      <Route exact path="/category/:categoryId" component={ItemListContainer}/>
-      <Route exact path="/detail/:id" component={ItemDetailContainer}/>
-      <Route exact path="/cart" component={Cart}/>
-      </Switch>
+      <div className="App">
+        <NavBar />
+        <Switch>
+        <Route exact path="/"> <ItemListContainer/> </Route>
+        <Route exact path="/category/:categoryId" component={ItemListContainer}/>
+        <Route exact path="/detail/:id" component={ItemDetailContainer}/>
+        <Route exact path="/cart" component={Cart}/>
+        </Switch>
+      </div>
       </BrowserRouter>
-    </div>
-    
+    </CartProvider>
   );
 }
 
