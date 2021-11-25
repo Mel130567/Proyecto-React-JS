@@ -19,8 +19,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             alert("Error. No puede agregarse menos de 1 unidad al carrito")
 
         }
-    }
-    console.log(count);
+    }    
 
     return (
         <>

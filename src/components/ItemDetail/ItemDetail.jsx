@@ -9,20 +9,22 @@ const ItemDetail = ({productos}) =>{
     
     const {cart, addItem} = UseCartContext()
 
-    const onAdd = async (count) => {
+    const onAdd = (count) => {
         setAddToCart(true)
-        addItem({...productos, qnt: count })
-        console.log(cart,"item");
+        addItem({...productos[0], qnt: count })                
     }
-
+    console.log("Cart", cart);
     return(
         <>
             <div className="card" style={{width: "18rem"}} key={productos[0].id}>
                 <img src={productos[0].pictureUrl} className="card-img-top" alt="..."></img>
                 {addToCart ? 
                 <div className="card-body">
+                    <Link to="/" >
+                    <button className="btn btn-primary">Seguir comprando</button>
+                    </Link>
                     <Link to = {"/cart"}>
-                        <button className="btn btn-primary">
+                        <button className="btn btn-primary m-2">
                             Finalizar Compra
                         </button>
                     </Link>

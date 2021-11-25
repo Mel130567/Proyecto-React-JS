@@ -1,9 +1,13 @@
 import CartWidget from "../CartWidget/CartWidget"
 import { Link } from "react-router-dom"
+import { UseCartContext } from "../../Context/CartContext"
 
   const NavBar = () => {
 
+    const { itemCounter } = UseCartContext()         
+
     return (
+
         <nav className="navbar navbar-expand-lg navbar-light bg-info" style={{minHeight: '10vh' }}>
                 <Link to="/" >
                 <a className="navbar-brand" href="#">Patitas pet-shop</a>
@@ -26,6 +30,7 @@ import { Link } from "react-router-dom"
                 </ul>
                 <Link to="/cart">
                 <CartWidget/>
+                {itemCounter() !== 0 && itemCounter()}
                 </Link>
             </div>
      </nav>
