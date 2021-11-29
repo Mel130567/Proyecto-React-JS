@@ -1,14 +1,9 @@
 import React, {useState, useEffect} from "react"
 import ItemDetail from "../ItemDetail/ItemDetail"
-import { productos } from "../../service/productos"
 import { Spinner } from "react-bootstrap"
 import {useParams} from 'react-router-dom';
+import { getFirestore } from "../../service/getFirestore";
 
-const getItem = new Promise((res,rej) => {
-    setTimeout(()=>{
-        res(productos)
-    }, 2000)
-})
 
 const ItemDetailContainer = () =>{
     const [productos, setProductos] = useState([])
@@ -16,15 +11,14 @@ const ItemDetailContainer = () =>{
 
     const {id} = useParams()
 
-    useEffect(()=>{
-        getItem
-        .then(
-            res =>{setProductos(res.filter(prod => prod.id == id))
-            }
-        )
-        .catch(err => console.log(err))
-        .finally(() => setLoading(false))
-        },[])
+useEffect(()=>{
+    const dbQuery = getFirestore()
+
+    dbQuery.collection('items').doc(id).get()
+    .then(res => setProductos({id: res.id, ...res.data()}))    
+    .catch(console.log('error'))
+    .finally(() => setLoading(false))
+},[])
 
 
     return(

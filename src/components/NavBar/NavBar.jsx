@@ -1,16 +1,18 @@
 import CartWidget from "../CartWidget/CartWidget"
 import { Link } from "react-router-dom"
 import { UseCartContext } from "../../Context/CartContext"
+import imgLogo from './logo.png'
+
 
   const NavBar = () => {
-
-    const { itemCounter } = UseCartContext()         
+ 
+    const { itemCounter } = UseCartContext()  
 
     return (
 
         <nav className="navbar navbar-expand-lg navbar-light bg-info" style={{minHeight: '10vh' }}>
                 <Link to="/" >
-                <a className="navbar-brand" href="#">Patitas pet-shop</a>
+                <img src={imgLogo} alt="logo" style={{height: "60px"}}></img>
                 </Link>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>

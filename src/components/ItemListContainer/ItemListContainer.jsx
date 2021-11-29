@@ -1,14 +1,10 @@
 import React, {useState, useEffect} from "react"
 import ItemList from "../ItemList/ItemList"
-import { productos } from "../../service/productos"
+
 import { Spinner } from "react-bootstrap"
 import {useParams} from 'react-router-dom';
+import { getFirestore } from "../../service/getFirestore";
 
-const verProductos = new Promise((res,rej)=>{
-    setTimeout(()=>{
-        res(productos)
-    }, 2000)
-})
 
 const ItemListContainer = () => {
 
@@ -18,18 +14,20 @@ const [loading, setLoading] = useState(true)
 const {categoryId} = useParams()
 
 useEffect(()=>{
-    verProductos
-    .then(
-        res =>{
-            if(categoryId === undefined){
-                setProductos(res)
-            }else{
-                setProductos(res.filter(prod => prod.category == categoryId))
-            }
-        }
-    )
-    .catch(err => console.log(err))
-    .finally(() => setLoading(false))
+
+    const dbQuery = getFirestore()
+
+    if(categoryId === undefined){
+        dbQuery.collection('items').get()
+        .then(res => setProductos(res.docs.map( prod => ({ id: prod.id, ...prod.data()}))))
+        .catch(err => console.log('error', err))
+        .finally(() => setLoading(false))
+    } else{
+        dbQuery.collection('items').where('category', '==', parseInt(categoryId)).get()
+        .then(res => setProductos(res.docs.map( prod => ({ id: prod.id, ...prod.data()}))))
+        .catch(err => console.log('error', err))
+        .finally(() => setLoading(false))
+    }
     },[categoryId])
     
     return (
