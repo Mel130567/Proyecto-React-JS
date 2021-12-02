@@ -1,7 +1,11 @@
 import { UseCartContext } from "../../Context/CartContext"
+import React, {useState, useEffect} from "react"
 import { Link } from "react-router-dom";
+import ModalCarrito from "../ModalCarrito/ModalCarrito";
 
 const Cart = () =>{
+    const [showModal, setShowModal] = useState(false);
+    
     const {cart, removeItem, clearCart, itemCounter} = UseCartContext()
 
     let total = 0;
@@ -39,12 +43,13 @@ const Cart = () =>{
                         <p>Precio total: $ {total} </p>
                     </div>
                     <div>
-                        <button>Finalizar compra</button>
+                        <button onClick={() => setShowModal(true)}>Finalizar compra</button>
                         <Link to='/'><button>Seguir comprando</button></Link>
                         <button onClick={clearCart}>Vaciar el carrito</button>
                     </div>
                 </div>
             </div>}
+            {showModal ? <ModalCarrito /> : <div></div>}
      </>
     )
 }

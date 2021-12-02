@@ -2,7 +2,7 @@ import React, {useContext, createContext, useState} from "react"
 
 const CartContext = createContext([]);
 
-export const UseCartContext = () => { return useContext(CartContext)}
+export const UseCartContext = () => {return useContext(CartContext)}
 
 const CartProvider = ({children}) => {
 
@@ -38,13 +38,17 @@ const CartProvider = ({children}) => {
     const itemCounter = () =>{
         return cart.reduce((accum, item) => accum = accum + item.qnt, 0)
     }
+    const totalPrice = () => {
+        return cart.reduce((total, item) => (total +  (item.price * item.qnt)), 0)
+    }
 
     return <CartContext.Provider value={{
         cart,
         addItem,
         removeItem,
         clearCart,
-        itemCounter
+        itemCounter,
+        totalPrice
     }}>
     {children}
     </CartContext.Provider>
