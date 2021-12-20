@@ -27,7 +27,7 @@ const ModalCarrito = () =>{
         )
     }
 
-    const generarOrden = (e) =>{
+    const generarOrden = async (e) =>{
 
         e.preventDefault()
         const orden = {}
@@ -44,7 +44,7 @@ const ModalCarrito = () =>{
         })
 
         const dbQuery = getFirestore()
-        dbQuery.collection('ordenes').add(orden)
+        await dbQuery.collection('ordenes').add(orden)
         .then(resp => setIdOrden(console.log(resp.id)))
         .catch(err => console.log('error', err))
         .finally(() => setDatosForm({
@@ -53,7 +53,6 @@ const ModalCarrito = () =>{
             email: ''
         }))
         
-        {console.log(orden, 'la orden')}
     
     }
 
@@ -64,21 +63,18 @@ const ModalCarrito = () =>{
         </Modal.Header>
 
         <Modal.Body>
-            <form onSubmit={generarOrden} >
+            <form className="d-flex flex-column bd-highlight mb-3" onSubmit={generarOrden} >
                 <label>Nombre:</label>
                 <input type="text" name='nombre' value={datosForm.nombre} onChange={handleChange}/>
                 <label>Email</label>
                 <input type="text" name='email' value={datosForm.email} onChange={handleChange}/>
                 <label>Telefono</label>
                 <input type="text" name='tel' value={datosForm.tel} onChange={handleChange}/>
-                <button onClick={() => setMensajeId(true)}>Enviar</button>
-                {mensajeId ? <div><p>Tu numero de compra es : {idOrden}</p></div> : <div></div>}
+                <button className="btn btn-outline-info btn-light m-3" onClick={() => setMensajeId(true)}>Enviar</button>
+                {mensajeId ? <div><p>Tu numero de compra es : {idOrden}</p></div> : <div>No ha generado un numero de compra</div>}
             </form>
         </Modal.Body>
 
-        <Modal.Footer>
-            <button variant="primary">Cerrar</button>
-        </Modal.Footer>
     </Modal.Dialog>
     )
 }

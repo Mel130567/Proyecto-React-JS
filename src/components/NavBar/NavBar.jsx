@@ -30,10 +30,14 @@ import imgLogo from './logo.png'
                     </Link>
                 </li>
                 </ul>
-                <Link to="/cart">
-                <CartWidget/>
-                {itemCounter() !== 0 && itemCounter()}
-                </Link>
+                <div className="d-flex flex-row bd-highlight ">
+                    <div>
+                    <Link to="/cart">
+                    <CartWidget/>
+                    </Link>
+                    </div>
+                    <div className="mx-2">{itemCounter() !== 0 && itemCounter()}</div>
+                </div>
             </div>
      </nav>
     )

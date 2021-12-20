@@ -16,16 +16,16 @@ const ItemDetail = ({productos}) =>{
     }
 
     return(
-        <>
-            <div className="card" style={{width: "18rem"}} key={productos.id}>
+        <div className="d-flex justify-content-center" >
+            <div className="card m-5" style={{width: "18rem"}} key={productos.id}>
                 <img src={productos.pictureUrl} className="card-img-top" alt="producto de mascota"></img>
                 {addToCart ? 
                 <div className="card-body">
                     <Link to="/" >
-                    <button className="btn btn-primary">Seguir comprando</button>
+                    <button className="btn btn-outline-info btn-light m-3">Seguir comprando</button>
                     </Link>
                     <Link to = {"/cart"}>
-                        <button className="btn btn-primary m-2">
+                        <button className="btn btn-outline-info btn-light m-3">
                             Finalizar Compra
                         </button>
                     </Link>
@@ -38,7 +38,7 @@ const ItemDetail = ({productos}) =>{
                 </div>
                 }
             </div>
-        </>
+        </div>
     )
 }
 
